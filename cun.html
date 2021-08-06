@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>Cún đại ca</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .waviy {
+            position: relative;
+            -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
+            font-size: 30px;
+        }
+
+        .waviy span {
+            font-family: 'Alfa Slab One', cursive;
+            position: relative;
+            display: inline-block;
+            color: hotpink;
+            text-transform: uppercase;
+            animation: waviy 1s infinite;
+            animation-delay: calc(.1s * var(--i));
+
+        }
+
+        @keyframes waviy {
+
+            0%,
+            40%,
+            100% {
+                transform: translateY(0)
+            }
+
+            20% {
+                transform: translateY(-20px)
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: antiquewhite;">
+    <h1 id="txt" class="animate__animated animate__lightSpeedInRight" style="text-align: center;">
+        Hello
+    </h1>
+    <div id="displayDiv">
+
+    </div>
+    <script>
+        const elemRef = document.getElementById('txt');
+
+        async function seccond() {
+
+            const pro = new Promise((rl, rj) => {
+                setTimeout(() => {
+                    rl('next');
+                }, 2000);
+            });
+
+            let temp = await pro.then(_ => _);
+            if (temp === 'next') {
+                elemRef.classList.add('animate__zoomInDown');
+                elemRef.innerHTML = 'This is . . .';
+            }
+
+            const pro1 = new Promise((rl, rj) => {
+                setTimeout(() => {
+                    rl('next2');
+                }, 2000);
+            });
+            let c = await pro1.then(_ => _);
+            three();
+
+
+            const pro2 = new Promise((rl, rj) => {
+                setTimeout(() => {
+                    rl('next2');
+                }, 1000);
+            });
+
+            await pro2.then(_ => _);
+            countDown(10);
+
+        }
+
+        function three() {
+            elemRef.classList.remove('animate__zoomInDown');
+            elemRef.classList.add('animate__rotateOut');
+        }
+
+
+        function countDown(i) {
+            elemRef.classList.remove('animate__rotateOut');
+            elemRef.innerHTML = '';
+            var int = setInterval(function () {
+                elemRef.innerHTML = i;
+                if (i === 0) {
+                    document.body.style.backgroundImage = "url(./bg.svg)";
+                    elemRef.style.color = 'indianred';
+                    elemRef.innerHTML = '<div class="waviy">' +
+                    '<span style="--i:1">I</span>'+
+                    ' <span style="--i:2">L</span>'+
+                    ' <span style="--i:3">o</span>'+
+                    '<span style="--i:4">v</span>'+
+                    '<span style="--i:5">e</span>'+
+                    '<span style="--i:6">Y</span>'+
+                    ' <span style="--i:7">o</span>'+
+                    ' <span style="--i:8">u</span>'+
+                    ' </div > '
+                + '<br/>' + 'Yêu cún Nhất Nhà';
+        }
+        i-- || clearInterval(int);  //if i is 0, then stop the interval
+            }, 1000);
+        }
+        seccond();
+    </script>
+</body>
+
+</html>
